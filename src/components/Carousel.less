@@ -1,0 +1,77 @@
+/**
+ * @Date:   2018-07-08T21:05:48+08:00
+ * @Last modified time: 2018-07-08T22:39:55+08:00
+ */
+ .carousel,
+ .carousel_item  {
+   width: 100%;
+   height: 200px;
+   position: relative;
+   overflow: hidden;
+ }
+
+ .carousel_item {
+   position: absolute;
+   top: 0;
+   left: 0;
+   transform: translateX(0);
+   transition: transform .2s;
+ }
+
+ .carousel_item-before {
+   transform: translateX(-100%);
+   transition: transform .2s;
+ }
+
+ .carousel_item-after {
+   transform: translateX(100%);
+   transition: transform .2s;
+ }
+
+ .carousel_image {
+   width: 100%;
+   height: 100%;
+ }
+
+ .carousel_text {
+   position: absolute;
+   left: 16px;
+   right: 16px;
+   bottom: 46px;
+   color: #FFF;
+   font-size: 20px;
+   z-index: 99;
+ }
+
+ .carousel_dotcontainer {
+   position: absolute;
+   width: 100%;
+   bottom: 16px;
+   display: flex;
+   flex-flow: row nowrap;
+   justify-content: center;
+   align-items: center;
+   z-index: 99;
+ }
+
+ .carousel_dot {
+   width: 12px;
+   height: 12px;
+   border-radius: 50%;
+   background-color: #ccc;
+   margin: 0 2px;
+ }
+
+ .carousel_dot-active {
+   background-color: #fff;
+ }
+
+ .mask {
+   position: absolute;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   background: rgba(0,0,0,.3);
+   z-index: 9;
+ }

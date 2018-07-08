@@ -1,0 +1,67 @@
+<!--
+@Date:   2018-07-08T19:26:53+08:00
+@Last modified time: 2018-07-08T22:26:02+08:00
+-->
+<template>
+  <view class="carousel">
+    <view class="mask"></view>
+    <repeat for="{{ list }}" key="index" item="item" index="index">
+      <view class="carousel_item {{ index > active ? 'carousel_item-after': '' }} {{ index < active ? 'carousel_item-before': '' }}" data-index="{{ index }}">
+        <image mode="aspectFill" src="{{ item.image }}" class="carousel_image"></image>
+        <text class="carousel_text">{{ item.title }}</text>
+      </view>
+    </repeat>
+    <view class="carousel_dotcontainer">
+      <repeat for="{{ list }}" key="index">
+        <view class="carousel_dot {{ active === index ? 'carousel_dot-active' : '' }}"></view>
+      </repeat>
+    </view>
+  </view>
+</template>
+<style lang="less" src="./Carousel.less"></style>
+<script>
+  import wepy from 'wepy'
+  export default class Carousel extends wepy.component {
+    props = {
+      list: {
+        type: Array,
+        default () {
+          return []
+        }
+      },
+      active: {
+        type: Number,
+        default: 0,
+        twoWay: true
+      },
+      duration: {
+        type: Number,
+        default: 3000
+      }
+    }
+
+    data = {
+      timeId: ''
+    }
+
+    updateActive () {
+      let { length } = this.list
+
+      if (this.active >= length - 1) {
+        this.active = 0
+        return
+      }
+      this.active += 1
+    }
+
+    updateActiveController () {
+      this.updateActive()
+      this.$apply()
+      this.timeId = setTimeout(this.updateActiveController.bind(this), this.duration)
+    }
+
+    onLoad () {
+      this.timeId = setTimeout(this.updateActiveController.bind(this), this.duration)
+    }
+  }
+</script>
