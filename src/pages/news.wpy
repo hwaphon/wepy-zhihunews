@@ -1,0 +1,52 @@
+<!--
+@Date:   2018-07-09T07:57:46+08:00
+@Last modified time: 2018-07-09T20:39:26+08:00
+-->
+<style lang="less" src="./news.less"></style>
+<template>
+  <view class="news">
+    <view class="news-header">
+      <image mode="aspectFill" src="{{ newsContent.image }}" class="news-image"></image>
+      <text class="news-text">{{ newsContent.title }}</text>
+      <text class="news-imagesource">{{ newsContent.image_source }}</text>
+    </view>
+    <view class="news-content">
+      <import src="../utils/wxParse/wxParse.wxml"/>
+      <block wx:for="{{ article.nodes }}" wx:key="{{index}}">
+          <template is="wxParse0" data="{{item}}"/>
+      </block>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  import API from '@/const/api'
+  import WxParse from '../utils/wxParse/wxParse'
+
+  export default class News extends wepy.page {
+    config = {
+      navigationBarTitleText: '详情',
+      navigationBarBackgroundColor: '#75c2f6',
+      navigationBarTextStyle: '#FFF'
+    }
+
+    data = {
+      newsContent: {},
+      article: {}
+    }
+
+    getNews (id) {
+      return wepy.request(API.NEWS + id)
+    }
+    async onLoad (options) {
+      let { id } = options
+      let { data: newsContent } = await this.getNews(id)
+
+      this.newsContent = newsContent
+      this.$apply()
+
+      let articleContent = WxParse.wxParse('article', 'html', newsContent.body, this, 0)
+      this.article = articleContent['article']
+    }
+  }
+</script>

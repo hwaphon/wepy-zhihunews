@@ -1,12 +1,11 @@
 <!--
 @Date:   2018-07-08T19:26:53+08:00
-@Last modified time: 2018-07-08T22:26:02+08:00
+@Last modified time: 2018-07-09T08:31:36+08:00
 -->
 <template>
   <view class="carousel">
-    <view class="mask"></view>
     <repeat for="{{ list }}" key="index" item="item" index="index">
-      <view class="carousel_item {{ index > active ? 'carousel_item-after': '' }} {{ index < active ? 'carousel_item-before': '' }}" data-index="{{ index }}">
+      <view class="carousel_item {{ index > active ? 'carousel_item-after': '' }} {{ index < active ? 'carousel_item-before': '' }}" data-index="{{ index }}" @tap="onTap({{ item.id }})">
         <image mode="aspectFill" src="{{ item.image }}" class="carousel_image"></image>
         <text class="carousel_text">{{ item.title }}</text>
       </view>
@@ -36,12 +35,18 @@
       },
       duration: {
         type: Number,
-        default: 3000
+        default: 5000
       }
     }
 
     data = {
       timeId: ''
+    }
+
+    methods = {
+      onTap (id) {
+        this.$emit('carousel-click', id)
+      }
     }
 
     updateActive () {

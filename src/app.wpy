@@ -1,11 +1,12 @@
 <!--
 @Date:   2018-07-08T16:49:09+08:00
-@Last modified time: 2018-07-08T17:55:35+08:00
+@Last modified time: 2018-07-09T07:58:01+08:00
 -->
 
 
 
 <style lang="less">
+@import "/utils/wxParse/wxParse.wxss";
 .container {
   height: 100%;
   display: flex;
@@ -23,7 +24,8 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/index'
+      'pages/index',
+      'pages/news'
     ],
     window: {
       backgroundTextStyle: 'light',

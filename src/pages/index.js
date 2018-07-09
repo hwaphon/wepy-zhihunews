@@ -1,6 +1,6 @@
 /**
  * @Date:   2018-07-08T19:14:17+08:00
- * @Last modified time: 2018-07-08T22:34:37+08:00
+ * @Last modified time: 2018-07-09T08:31:42+08:00
  */
 import wepy from 'wepy';
 import API from '@/const/api';
@@ -20,6 +20,14 @@ export default class Index extends wepy.page {
   data = {
     carouselList: [],
     carouselActiveIndex: 0
+  }
+
+  events = {
+    'carousel-click': (id, $event) => {
+      wx.navigateTo({
+        url: `/pages/news?id=${ id }`
+      })
+    }
   }
 
   getLatestNews () {
