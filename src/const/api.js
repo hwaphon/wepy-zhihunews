@@ -5,7 +5,8 @@
 
  const API = {
    LATEST: 'https://news-at.zhihu.com/api/4/news/latest',
-   NEWS: 'https://news-at.zhihu.com/api/4/news/'
+   NEWS: 'https://news-at.zhihu.com/api/4/news/',
+   BEFORENEWS: 'https://news-at.zhihu.com/api/4/news/before/'
  }
 
  export default API
