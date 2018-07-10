@@ -2,8 +2,8 @@
 
 使用 `Wepy` 开发的知乎日报小程序，整体比较简单，只涉及到两个页面，第一个是主页，第二个是新闻详情页。效果如下：
 
-![image](https://github.com/hwaphon/wepy-zhihunews/blob/master/preview0.png)
-![image](https://github.com/hwaphon/wepy-zhihunews/blob/master/preview1.png)
+![image](https://github.com/hwaphon/wepy-zhihunews/blob/master/preview0.jpg)
+![image](https://github.com/hwaphon/wepy-zhihunews/blob/master/preview1.jpg)
 
 # 安装使用
 
