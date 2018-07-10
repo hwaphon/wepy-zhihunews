@@ -12,7 +12,7 @@
     </repeat>
     <view class="carousel_dotcontainer">
       <repeat for="{{ list }}" key="index">
-        <view class="carousel_dot {{ active === index ? 'carousel_dot-active' : '' }}"></view>
+        <view class="carousel_dot {{ active === index ? 'carousel_dot-active' : '' }}" @tap="onClick({{ index }})"></view>
       </repeat>
     </view>
   </view>
@@ -46,12 +46,16 @@
     methods = {
       onTap (id) {
         this.$emit('carousel-click', id)
+      },
+      onClick (index) {
+        clearTimeout(this.timeId)
+        this.active = index
+        this.timeId = setTimeout(this.updateActiveController.bind(this), this.duration)
       }
     }
 
-    updateActive () {
+    updateActive (index) {
       let { length } = this.list
-
       if (this.active >= length - 1) {
         this.active = 0
         return
