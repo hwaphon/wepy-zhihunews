@@ -5,6 +5,15 @@
 <template>
   <view class="Index">
     <carousel :list.sync="carouselList" :active.sync="carouselActiveIndex"></carousel>
+    <view class="news-list">
+      <text class="news-title">今日热闻</text>
+      <repeat for="{{ latestNews }}" key="index">
+        <view class="news-item">
+          <text class="news-item-title">{{ item.title }}</text>
+          <image class="news-item-image" mode="aspectFill" src="{{ item.images[0] }}"></image>
+        </view>
+      </repeat>
+    </view>
   </view>
 </template>
 <style lang="less" src="./index.less"></style>

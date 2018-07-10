@@ -19,7 +19,8 @@ export default class Index extends wepy.page {
 
   data = {
     carouselList: [],
-    carouselActiveIndex: 0
+    carouselActiveIndex: 0,
+    latestNews: []
   }
 
   events = {
@@ -38,6 +39,7 @@ export default class Index extends wepy.page {
     console.log('Index onLoad')
     let latest = await this.getLatestNews()
     this.carouselList = latest.data.top_stories
+    this.latestNews = latest.data.stories
     this.$apply();
   }
 }
